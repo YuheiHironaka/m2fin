@@ -1,0 +1,20 @@
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.pdf
+# Keep the final pdf if desired, but usually it is generated. 
+# Uncomment the line above (*.pdf) to ignore PDFs.
+
+# Editor files
+.vscode/
+*.DS_Store
