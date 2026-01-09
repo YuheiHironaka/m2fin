@@ -234,6 +234,71 @@
 
 
 \chapter{システムの概要}
+本研究では，2D-LiDARで計測した複数歩行者の検出・追跡と骨格推定をリアルタイムで行う，統合的なシステムを実現した．本章ではシステムの概要を示す．
+
+
+       \section{2D-LiDARによる計測}
+       
+              \subsection{2D-LiDARの仕様}
+              LiDAR (light detection and ranging)とは，光でスキャニングしながら検出物までの距離を測定する二次元走査型の光距離センサである.本研究では北陽電機の UTM-30LX\cite{lidar}(図\ref{fig:lid},表\ref{tab:lid})を使用する.周囲270度に存在する物体との距離を正確に計測することができる．
+
+              \begin{figure}[H]
+              \centering
+              \begin{center}
+              \centering
+              \includegraphics[width=60mm]{lidar.jpg}
+              \caption{UTM-30LX}
+              \label{fig:lid}
+              
+              \end{center} 
+              \end{figure}
+
+
+              \begin{table}[H]
+              \centering
+              \caption{{UTM-30LX} の仕様}
+              
+              \begin{tabular}{|c|l|} \hline
+              光源 & 半導体レーザλ=905nm，FDAレーザ安全クラス 1\\ \hline
+              電源電圧 & DC12V±10\% \\ \hline 
+              電源電流 & パワーON時Max1A，定常時0.7A以下\\ \hline
+              検出距離 & 検出保証値 0.1〜30m,最大検出距離 60m(出力限界値)\\ \hline
+              検出体 & 最小検出物 130mm(10m):距離により変動する \\ \hline
+              測距制度 & 0.1〜10m:±30mm， 10〜30m:±50mm \\ \hline
+              走査角度 & 270度\\ \hline
+              角度分解能 & 約0.25度(360°/1440分割)\\ \hline
+              走査時間 & 25ms(モータ回転数 2400rpm)\\ \hline
+              インターフェース & USB Ver2.0 FSモード(12Mbps)\\ \hline
+              出力 & OUTPUT 1点 同期出力 \\ \hline
+              重量 & 210g(ケーブルを除く)\\ \hline
+
+              \end{tabular}
+              \label{tab:lid}
+              \end{table}
+
+
+              \subsection{2D-LiDARデータの画像化}
+              2D-LiDARが取得するデータは極座標で表されるため，取得した距離データのラジアン角度を求め，直交座標系に変形して描画するこのように描画された画像を本稿では距離画像と呼ぶ．また，現在の1フレームの距離画像を，本稿では現在画像と呼ぶ．
+
+
+              \subsection{2D-LiDARデータの時系列画像化}
+              先行研究と同様に，複数フレームの距離画像を重ね合わせた画像を時系列画像と呼ぶ．時系列画像は，人間などの対象物の動きを1枚の画像で表現する，Motion History Image (MHI) \cite{bobick2001recognition}という手法を用いて作成する．MHIでは，現在のフレームに近いほど明るく，過去のフレームほど暗く描画することで，対象の動きを表す．
+              本研究においては，フレームが更新される度に前フレームでの時系列画像の輝度を一定量減らし，最新のフレームを重ね合わせることで時系列画像を作成する．
+       
+
+
+
+       \section{人物の検出と追跡}
+
+
+
+       \section{骨格推定}
+
+大枠を書く　良い感じの図と合わせ
+
+１計測→MHI作成まで
+２検出・追跡　YOLOの学習　ByteTrackの適用
+３骨格推定　　　こうして融合しました
 
 
 \chapter{実験}
