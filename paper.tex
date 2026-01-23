@@ -231,6 +231,17 @@
        \section{骨格推定}
        小林研究室では，2D-LiDARを用いた足下計測データから，歩行者の全身骨格を推定する研究が行われてきた\cite{s_b}．本節では先行研究における3次元骨格推定の概要について説明する．
 
+
+       \begin{figure}[H]
+       \centering
+       \begin{center}
+              \centering
+              \includegraphics[width=115mm]{sudasan.png}
+              \caption[骨格推定の概要]{骨格推定の概要\newline (\cite{s_b}図3.1より)}
+              \label{fig:com}
+       \end{center} 
+       \end{figure}
+
               \subsection{学習データの作成}
               先行研究では，学習データのにおける骨格情報の取得のためにRGB-DカメラであるKinectを用いている．足元に設置した2D-LiDARで直進歩行を記録すると同時に，正面に設置したKinectで全身の骨格情報をあわせて取得して学習データとする．
               
@@ -337,11 +348,38 @@
        
               まず，2D-LiDARから得られる点群データを，3次元空間内において平面として描画する．次に，推定された骨格を描画していく．この際，追跡結果の座標情報に基づいて，骨格情報を描画する座標を決定する．足首を示す骨格点と2D-LiDAR点群のZ座標を揃えることで，実際に点群上を骨格が歩いているような表示を実現した．
 
+              \begin{figure}[H]
+              \centering
+              \begin{center}
+                     \centering
+                     \includegraphics[width=115mm]{3d.png}
+                     \caption[３次元描写の様子]{３次元描写の様子}
+                     \label{fig:3d}
+              \end{center} 
+              \end{figure}
+
               \subsection{崩れた骨格の補完}
               現在の骨格推定の精度はまだ改善の余地があり，明確に崩れた骨格が推定される場合もある．
               正しい骨格を推定できたフレームと明確に崩れてしまったフレームが連続する場合，描画される骨格形状が急激に変化するため，歩行している様子がわかりにくくなってしまう．
               
               そこで本システムでは，時間的な連続性を利用した補完処理を導入した．明らかに崩れた骨格が推定された場合には，そのフレームの推定結果を破棄する．代わりに，直前のフレームにおける推定結果をそのまま保持して描画に使用する．この処理により，崩れた骨格による表示の乱れを抑え，スムーズで違和感の少ない結果出力を実現した．
+
+              \begin{figure}[H]
+              \centering
+              \begin{minipage}{0.4\columnwidth}
+                     \centering
+                     \includegraphics[width=\columnwidth]{ske_good.png}
+                     \caption[正しい骨格]{正しい骨格}
+                     \label{fig:ske_good}
+              \end{minipage}
+              \hspace{0.04\columnwidth} %
+              \begin{minipage}{0.4\columnwidth}
+                     \centering
+                     \includegraphics[width=\columnwidth]{ske_bad.png}
+                     \caption[崩れた骨格]{崩れた骨格}
+                     \label{fig:ske_bad}
+              \end{minipage}
+              \end{figure}
 
 
 
