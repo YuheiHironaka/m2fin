@@ -4,6 +4,10 @@ http://www.ics.saitama-u.ac.jp/ICS/student/thesis/
 
 
 
+latexmk paper.tex
+
+
+
 卒論こんな流れ？​
 
 機械学習ベースでLiDARによる歩行者追跡したい​
