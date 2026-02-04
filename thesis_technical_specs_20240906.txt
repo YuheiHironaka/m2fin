@@ -1,0 +1,28 @@
+【論文執筆用：モデル学習詳細スペック】
+作成日: 2024-09-06 学習ログより抽出
+
+1. モデルアーキテクチャ (Model Architecture)
+   - ベースモデル: YOLOX-X (Standard)
+   - パラメータ数: 99.00 M
+   - 演算量 (GFLOPs): 793.21
+   - 入力解像度: (800, (Width x Height)
+
+2. 学習ハイパーパラメータ (Training Hyperparameters)
+   - 学習率 (Base LR): 1.5625e-05
+   - 最適化アルゴリズム: SGD (Momentum=0.9)
+   - 重み減衰 (Weight Decay): 0.0005
+   - 学習スケジュール: Cosine Annealing
+   - ウォームアップ期間: 1 Epochs
+   - 指数移動平均 (EMA): True
+   - 混合精度学習 (Mixed Precision): True (FP16)
+
+3. 学習結果詳細 (Evaluation Metrics - Session 1 Peak)
+   - 最大精度 (AP 0.5:0.95): 0.815
+   - AP@50 (IoU=0.5): 0.990
+   - AP@75 (IoU=0.75): 0.990 (高精度なバウンディングボックス回帰)
+   - 推論速度 (Inference Time): 85.97 ms / image
+   - 1イテレーション平均時間: 0.193 s
+
+4. データ増強 (Data Augmentation)
+   - Mosaic & Mixup: True
+   - ※ログより: Epoch開始時に 'No mosaic aug now!' のフラグがあるモデルも存在。本モデルはL1損失追加モードで動作。
